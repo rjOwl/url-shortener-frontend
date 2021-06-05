@@ -26,7 +26,7 @@ const postMessage = async (url = "", method="POST", data) => {
     console.log(response);
     return response.json();
   }
-};  
+};
 
 // interface Ios{
 //   primary: String;
