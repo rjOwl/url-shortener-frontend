@@ -53,8 +53,8 @@ function App() {
   const [web, setWeb] = useState("");
   const [urls, setUrls] = useState([]);
   const [httpMethod, setHTTPMethod] = useState("post");
-  const baseURL = "https://secure-oasis-88951.herokuapp.com";
   const localURL = "http://localhost:5000/shortlinks";
+  const baseURL = "https://shortened-url-api.herokuapp.com/shortlinks";
 
   const handleSend = async (e) => {
     console.log(httpMethod)
@@ -79,12 +79,19 @@ function App() {
     android = clean(android)
     urlBody = clean(urlBody)
 
-    await postMessage(localURL, httpMethod, urlBody);
+    await postMessage(baseURL, httpMethod, urlBody);
   };  
 
   const handleGet = async (e) => {
     e.preventDefault();
-    await fetch(`${localURL}`)
+    await fetch(
+      `${baseURL}`,
+{
+      headers: {
+      "Content-Type": "application/json",
+    },
+}  
+      )
     .then((res) => {
         return res.json();
       })
